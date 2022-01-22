@@ -1,0 +1,130 @@
+AllCops:
+  TargetRubyVersion: 3.1
+  Exclude:
+    - bin/*
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Layout/ArgumentAlignment:
+  Enabled: false
+
+Layout/HashAlignment:
+  Enabled: false
+
+Layout/CommentIndentation:
+  Enabled: false
+
+Layout/EmptyLines:
+  Enabled: false
+
+Layout/EmptyLineBetweenDefs:
+  NumberOfEmptyLines: 1
+
+Layout/ExtraSpacing:
+  AllowForAlignment: true
+  AllowBeforeTrailingComments: true
+  # ForceEqualSignAlignment: false
+
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: false
+
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/LineLength:
+  Max: 160
+
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: false
+
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - "spec/**/*"
+
+Lint/AmbiguousOperator:
+  Enabled: false
+
+Style/AccessorGrouping:
+  Enabled: false
+
+Style/BlockComments:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
+Style/RedundantPercentQ:
+  Enabled: false
+
+Style/Documentation:
+  Exclude:
+    - "config/**/*"
+    - "db/**/*"
+    - "spec/**/*"
+
+Style/AndOr:
+  EnforcedStyle: conditionals
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/CommentedKeyword:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/Lambda:
+  Enabled: false
+
+Style/EmptyCaseCondition:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
+
+Style/ModuleFunction:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+
+Style/RescueModifier:
+  Enabled: false
+
+Style/HashAsLastArrayItem:
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - "**/*.rake"
+    - "spec/**/*.rb"
+
+Metrics/CyclomaticComplexity:
+  Max: 8
+
+Metrics/MethodLength:
+  Max: 14
+  Exclude:
+    - "db/migrate/**/*.rb"
+
+Metrics/ModuleLength:
+  Exclude:
+    - "spec/**/*.rb"
+
+Naming/RescuedExceptionsVariableName:
+  Enabled: false
+
+Naming/MethodParameterName:
+  MinNameLength: 2

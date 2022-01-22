@@ -1,0 +1,47 @@
+---
+
+name: Linters
+
+on: [pull_request]
+jobs:
+  linters:
+    name: runner / linters
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v1
+      - uses: ruby/setup-ruby@v1
+
+      - name: Rubocop
+        uses: reviewdog/action-rubocop@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+
+      - name: Brakeman
+        uses: reviewdog/action-brakeman@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+
+      # TODO: Configure linters
+      # - name: Reek
+      #   uses: reviewdog/action-reek@v1
+      #   with:
+      #     github_token: ${{ secrets.github_token }}
+
+      # - name: Fasterer
+      #   uses: vk26/action-fasterer@v1
+      #   with:
+      #     github_token: ${{ secrets.github_token }}
+
+  hadolint:
+    name: Docker linters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v1
+      - name: hadolint
+        uses: reviewdog/action-hadolint@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          hadolint_ignore: DL3008, DL3018
