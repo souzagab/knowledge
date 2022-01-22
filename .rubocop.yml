@@ -2,6 +2,7 @@ AllCops:
   TargetRubyVersion: 3.1
   Exclude:
     - bin/*
+    - vendor/**/*
 
 Bundler/OrderedGems:
   Enabled: false
