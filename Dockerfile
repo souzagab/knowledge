@@ -11,14 +11,14 @@ ARG GROUP=user
 ARG APP_PATH=/knowledge
 
 RUN apk add --update --no-cache tzdata bash less && \
-    apk add --no-cache --virtual .base build-base && \
-    apk add --no-cache postgresql14-client postgresql14-dev
+  apk add --no-cache --virtual .base build-base && \
+  apk add --no-cache postgresql14-client postgresql14-dev
 
 RUN addgroup -g $GROUP_ID -S $GROUP && \
-    adduser -s /sbin/nologin -u $USER_ID -G $GROUP $USER -S
-
+  adduser -s /sbin/nologin -u $USER_ID -G $GROUP $USER -S
 
 COPY entrypoint.sh /usr/bin/
+
 RUN chmod +x /usr/bin/entrypoint.sh
 
 RUN mkdir -p $APP_PATH/vendor/bundle && chown $USER:$GROUP -R $APP_PATH
