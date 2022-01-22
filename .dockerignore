@@ -1,0 +1,15 @@
+.git
+.gitignore
+.cache
+
+Dockerfile*
+docker-compose*
+.dockerignore
+
+.env*
+!.env*.example
+
+.bundle/
+vendor/
+
+.ruby-version
