@@ -31,10 +31,6 @@ module Knowledge
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # https://github.com/heartcombo/devise/issues/4696
-    Rails.application.config.middleware.insert_before Warden::Manager, ActionDispatch::Cookies
-    Rails.application.config.middleware.insert_before Warden::Manager, ActionDispatch::Session::CookieStore
-
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
