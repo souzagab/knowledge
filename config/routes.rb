@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get "ping", to: "ping#show"
 
   # Auth
-  # TODO: Reestructure devise routes, mounting only the ones necessary
+  # TODO: Restructure devise routes, mounting only the ones necessary
   #   `devise_for` mounts all routes eg: (new, edit) that we don't use in api-mode
   devise_for :users,
     path: "",
