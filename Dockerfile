@@ -17,6 +17,8 @@ RUN apk add --update --no-cache tzdata bash less && \
 RUN addgroup -g $GROUP_ID -S $GROUP && \
   adduser -s /sbin/nologin -u $USER_ID -G $GROUP $USER -S
 
+ENV APP_PATH $APP_PATH
+
 COPY entrypoint.sh /usr/bin/
 
 RUN chmod +x /usr/bin/entrypoint.sh
