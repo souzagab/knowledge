@@ -1,6 +1,8 @@
+require "devise/jwt/test_helpers"
+
 module RequestHelper
-  def auth_headers
-    user = FactoryBot.create :user
+  def auth_headers(role: nil)
+    user = FactoryBot.create :user, role
     headers = { "Accept" => "application/json", "Content-Type" => "application/json" }
 
     Devise::JWT::TestHelpers.auth_headers(headers, user)
