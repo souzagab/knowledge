@@ -13,7 +13,7 @@ RSpec.describe "courses#destroy", type: :request do
     end
 
     context "authorization" do
-      it "requires course to be an admin" do
+      it "only admins can remove courses" do
         delete url, headers: auth_headers
 
         expect(response).to have_http_status :forbidden

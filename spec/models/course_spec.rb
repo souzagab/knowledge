@@ -4,24 +4,24 @@ RSpec.describe Course, type: :model do
     # TODO: Create a shared_example for testing factories
     describe "build" do
       it "builds a valid resource" do
-        user = build :course
+        course = build :course
 
-        expect(user).to be_valid
+        expect(course).to be_valid
       end
     end
 
     describe "create" do
-      it "creates a valid user" do
+      it "creates a valid course" do
         expect { create :course }.to change { Course.count }
       end
     end
 
     context "traits" do
       describe "invalid" do
-        it "builds a invalid user" do
-          user = build :course, :invalid
+        it "builds a invalid course" do
+          course = build :course, :invalid
 
-          expect(user).to be_invalid
+          expect(course).to be_invalid
         end
       end
     end
@@ -31,15 +31,13 @@ RSpec.describe Course, type: :model do
     it { is_expected.to be_versioned }
   end
 
+  context "relations" do
+    it { is_expected.to have_many(:enrollments) }
+    it { is_expected.to have_many(:attendees).through(:enrollments).source(:user) }
+  end
+
   context "validations" do
-    context "uniqueness" do
-      subject { create :user }
-
-      it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
-    end
-
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:description) }
   end
-
 end

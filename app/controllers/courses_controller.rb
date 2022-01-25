@@ -5,7 +5,7 @@ class CoursesController < ApplicationController
 
   # GET /courses
   def index
-    courses = Course.all
+    courses = Course.accessible_by(current_ability)
 
     render json: courses
   end
