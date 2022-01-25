@@ -33,6 +33,8 @@ gem "devise", "~> 4.8"
 
 gem "devise-jwt", "~> 0.9.0"
 
+gem "cancancan", "~> 3.3"
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
