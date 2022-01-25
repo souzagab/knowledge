@@ -1,40 +1,45 @@
 RSpec.describe User, type: :model do
 
-  context "validations" do
-    context "factories" do
-      describe "build" do
-        it "builds a valid user" do
-          user = build :user
+  context "factories" do
+    # TODO: Create a shared_example for testing factories
+    describe "build" do
+      it "builds a valid user" do
+        user = build :user
 
-          expect(user).to be_valid
-        end
-      end
-
-      describe "create" do
-        it "creates a valid user" do
-          expect { create :user }.to change { User.count }
-        end
-      end
-
-      context "traits" do
-        describe "invalid" do
-          it "builds a invalid user" do
-            user = build :user, :invalid
-
-            expect(user).to be_invalid
-          end
-        end
-
-        describe "admin" do
-          it "creates an admin user" do
-            user = create :user, :admin
-
-            expect(user).to be_admin
-          end
-        end
+        expect(user).to be_valid
       end
     end
 
+    describe "create" do
+      it "creates a valid user" do
+        expect { create :user }.to change { User.count }
+      end
+    end
+
+    context "traits" do
+      describe "invalid" do
+        it "builds a invalid user" do
+          user = build :user, :invalid
+
+          expect(user).to be_invalid
+        end
+      end
+
+      describe "admin" do
+        it "creates an admin user" do
+          user = create :user, :admin
+
+          expect(user).to be_admin
+        end
+      end
+    end
+  end
+
+  context "behaviours" do
+    it { is_expected.to be_versioned }
+  end
+
+  context "validations" do
     context "uniqueness" do
       subject { create :user }
 
