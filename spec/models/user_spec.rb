@@ -1,6 +1,7 @@
 RSpec.describe User, type: :model do
 
   context "factories" do
+    # TODO: Create a shared_example for testing factories
     describe "build" do
       it "builds a valid user" do
         user = build :user
