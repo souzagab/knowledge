@@ -35,4 +35,11 @@ RSpec.describe Enrollment, type: :model do
     it { is_expected.to belong_to :user }
   end
 
+  context "validations" do
+    context "uniqueness" do
+      subject { create :enrollment }
+
+      it { is_expected.to validate_uniqueness_of(:user_id).scoped_to(:course_id) }
+    end
+  end
 end
