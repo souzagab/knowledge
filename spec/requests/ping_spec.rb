@@ -7,8 +7,6 @@ RSpec.describe "Pings", type: :request do
 
       expect(response).to have_http_status :ok
 
-      response_body = JSON.parse(response.body)
-
       expect(response_body).to have_key "pong"
 
       pong = DateTime.parse response_body["pong"]

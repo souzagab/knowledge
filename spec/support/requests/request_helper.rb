@@ -7,6 +7,14 @@ module RequestHelper
 
     Devise::JWT::TestHelpers.auth_headers(headers, user)
   end
+
+  def admin_headers
+    auth_headers(role: :admin)
+  end
+
+  def response_body
+    @response_body = JSON.parse response.body
+  end
 end
 
 RSpec.configure do |config|
