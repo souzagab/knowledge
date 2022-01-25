@@ -325,6 +325,13 @@ CREATE INDEX index_enrollments_on_user_id ON public.enrollments USING btree (use
 
 
 --
+-- Name: index_enrollments_on_user_id_and_course_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_enrollments_on_user_id_and_course_id ON public.enrollments USING btree (user_id, course_id);
+
+
+--
 -- Name: index_jwt_denylists_on_jti; Type: INDEX; Schema: public; Owner: -
 --
 

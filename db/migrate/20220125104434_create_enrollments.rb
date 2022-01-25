@@ -6,5 +6,7 @@ class CreateEnrollments < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+
+    add_index :enrollments, %i[user_id course_id], unique: true
   end
 end
