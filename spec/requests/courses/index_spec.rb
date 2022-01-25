@@ -26,7 +26,7 @@ RSpec.describe "courses#index", type: :request do
       let!(:user) { create :user }
       let!(:headers) { auth_headers_for user }
 
-      context "but the user does not have any enrollments" do
+      context "when the user does not have any enrollments" do
         it "responds with :ok status and an empty list" do
           get url, headers: headers
 
@@ -36,7 +36,7 @@ RSpec.describe "courses#index", type: :request do
         end
       end
 
-      context "and the user is registered in some courses" do
+      context "when the user is enrolled in some courses" do
         let(:enrolled_courses) { existing_courses.take rand(1...3) }
 
         before do

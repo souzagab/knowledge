@@ -14,7 +14,7 @@ module Courses
 
     # POST /courses/:course_id/enrollments
     def create
-      enrollment = @course.enrollments.new(enrollment_params)
+      enrollment = @course.enrollments.new enrollment_params
 
       if enrollment.save
         render json: enrollment, status: :created

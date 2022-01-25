@@ -13,7 +13,7 @@ RSpec.describe "courses/enrollments#index", type: :request do
     end
 
     context "authorization" do
-      it "requires user to be an admin" do
+      it "only admins can read enrollments" do
         get url, headers: admin_headers
 
         expect(response).to have_http_status :ok
