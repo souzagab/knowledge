@@ -18,5 +18,5 @@ Rails.application.routes.draw do
     },
     defaults: { format: :json }
 
-  resources :users, only: :index
+  resources :users
 end
