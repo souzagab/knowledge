@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :attendee do
+  factory :enrollment do
     user
     course
 

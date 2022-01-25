@@ -31,6 +31,11 @@ RSpec.describe Course, type: :model do
     it { is_expected.to be_versioned }
   end
 
+  context "relations" do
+    it { is_expected.to have_many(:enrollments) }
+    it { is_expected.to have_many(:attendees).through(:enrollments).source(:user) }
+  end
+
   context "validations" do
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:description) }

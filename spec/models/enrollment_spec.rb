@@ -1,26 +1,26 @@
-RSpec.describe Attendee, type: :model do
+RSpec.describe Enrollment, type: :model do
   context "factories" do
     # TODO: Create a shared_example for testing factories
     describe "build" do
       it "builds a valid resource" do
-        attendee = build :attendee
+        enrollment = build :enrollment
 
-        expect(attendee).to be_valid
+        expect(enrollment).to be_valid
       end
     end
 
     describe "create" do
-      it "creates a valid attendee" do
-        expect { create :attendee }.to change { Attendee.count }
+      it "creates a valid enrollment" do
+        expect { create :enrollment }.to change { Enrollment.count }
       end
     end
 
     context "traits" do
       describe "invalid" do
-        it "builds a invalid attendee" do
-          attendee = build :attendee, :invalid
+        it "builds a invalid enrollment" do
+          enrollment = build :enrollment, :invalid
 
-          expect(attendee).to be_invalid
+          expect(enrollment).to be_invalid
         end
       end
     end

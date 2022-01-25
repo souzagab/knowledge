@@ -36,38 +36,6 @@ CREATE TABLE public.ar_internal_metadata (
 
 
 --
--- Name: attendees; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.attendees (
-    id bigint NOT NULL,
-    course_id bigint NOT NULL,
-    user_id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
--- Name: attendees_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.attendees_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: attendees_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.attendees_id_seq OWNED BY public.attendees.id;
-
-
---
 -- Name: courses; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -97,6 +65,38 @@ CREATE SEQUENCE public.courses_id_seq
 --
 
 ALTER SEQUENCE public.courses_id_seq OWNED BY public.courses.id;
+
+
+--
+-- Name: enrollments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.enrollments (
+    id bigint NOT NULL,
+    course_id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: enrollments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.enrollments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: enrollments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.enrollments_id_seq OWNED BY public.enrollments.id;
 
 
 --
@@ -213,17 +213,17 @@ ALTER SEQUENCE public.versions_id_seq OWNED BY public.versions.id;
 
 
 --
--- Name: attendees id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.attendees ALTER COLUMN id SET DEFAULT nextval('public.attendees_id_seq'::regclass);
-
-
---
 -- Name: courses id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.courses ALTER COLUMN id SET DEFAULT nextval('public.courses_id_seq'::regclass);
+
+
+--
+-- Name: enrollments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.enrollments ALTER COLUMN id SET DEFAULT nextval('public.enrollments_id_seq'::regclass);
 
 
 --
@@ -256,19 +256,19 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 
 --
--- Name: attendees attendees_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.attendees
-    ADD CONSTRAINT attendees_pkey PRIMARY KEY (id);
-
-
---
 -- Name: courses courses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.courses
     ADD CONSTRAINT courses_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: enrollments enrollments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.enrollments
+    ADD CONSTRAINT enrollments_pkey PRIMARY KEY (id);
 
 
 --
@@ -304,24 +304,24 @@ ALTER TABLE ONLY public.versions
 
 
 --
--- Name: index_attendees_on_course_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_attendees_on_course_id ON public.attendees USING btree (course_id);
-
-
---
--- Name: index_attendees_on_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_attendees_on_user_id ON public.attendees USING btree (user_id);
-
-
---
 -- Name: index_courses_on_title; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_courses_on_title ON public.courses USING btree (title);
+
+
+--
+-- Name: index_enrollments_on_course_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_enrollments_on_course_id ON public.enrollments USING btree (course_id);
+
+
+--
+-- Name: index_enrollments_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_enrollments_on_user_id ON public.enrollments USING btree (user_id);
 
 
 --
@@ -360,19 +360,19 @@ CREATE INDEX index_versions_on_item_type_and_item_id ON public.versions USING bt
 
 
 --
--- Name: attendees fk_rails_bce6bb1481; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: enrollments fk_rails_2e119501f4; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.attendees
-    ADD CONSTRAINT fk_rails_bce6bb1481 FOREIGN KEY (user_id) REFERENCES public.users(id);
+ALTER TABLE ONLY public.enrollments
+    ADD CONSTRAINT fk_rails_2e119501f4 FOREIGN KEY (course_id) REFERENCES public.courses(id);
 
 
 --
--- Name: attendees fk_rails_c325312d06; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: enrollments fk_rails_e860e0e46b; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.attendees
-    ADD CONSTRAINT fk_rails_c325312d06 FOREIGN KEY (course_id) REFERENCES public.courses(id);
+ALTER TABLE ONLY public.enrollments
+    ADD CONSTRAINT fk_rails_e860e0e46b FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
 --
