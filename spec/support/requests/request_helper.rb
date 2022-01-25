@@ -8,6 +8,12 @@ module RequestHelper
     Devise::JWT::TestHelpers.auth_headers(headers, user)
   end
 
+  def auth_headers_for(user)
+    headers = { "Accept" => "application/json", "Content-Type" => "application/json" }
+
+    Devise::JWT::TestHelpers.auth_headers(headers, user)
+  end
+
   def admin_headers
     auth_headers(role: :admin)
   end
