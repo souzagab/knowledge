@@ -1,4 +1,4 @@
-RSpec.describe "blobs#show", :focus, type: :request do
+RSpec.describe "blobs#show", type: :request do
 
   let(:file) { file_fixture ["images/image.png", "images/image.jpg", "videos/sample.mp4"].sample }
 
