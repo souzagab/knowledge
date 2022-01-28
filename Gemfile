@@ -29,6 +29,8 @@ gem "bootsnap", require: false
 
 gem "dotenv-rails", "~> 2.7", require: "dotenv/rails-now"
 
+gem "active_model_serializers", "~> 0.10.13"
+
 gem "devise", "~> 4.8"
 
 gem "devise-jwt", "~> 0.9.0"
@@ -59,3 +61,5 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
+
+

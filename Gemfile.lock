@@ -46,6 +46,11 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_model_serializers (0.10.13)
+      actionpack (>= 4.1, < 7.1)
+      activemodel (>= 4.1, < 7.1)
+      case_transform (>= 0.2)
+      jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
     activejob (7.0.1)
       activesupport (= 7.0.1)
       globalid (>= 0.3.6)
@@ -90,6 +95,8 @@ GEM
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
     cancancan (3.3.0)
+    case_transform (0.2)
+      activesupport
     concurrent-ruby (1.1.9)
     crass (1.0.6)
     debug (1.4.0)
@@ -137,6 +144,7 @@ GEM
     irb (1.4.1)
       reline (>= 0.3.0)
     jmespath (1.5.0)
+    jsonapi-renderer (0.2.2)
     jwt (2.3.0)
     loofah (2.13.0)
       crass (~> 1.0.2)
@@ -254,6 +262,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  active_model_serializers (~> 0.10.13)
   aws-sdk-s3 (~> 1.111)
   bootsnap
   bullet (~> 7.0)
