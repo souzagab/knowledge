@@ -28,10 +28,21 @@ RSpec.describe "courses#destroy", type: :request do
   end
 
   context "when the course exists" do
-    it "responds with the existing resource" do
+
+    it "delete the course record" do
       expect { delete url, headers: admin_headers }.to change { Course.count }.by(-1)
 
       expect(response).to have_http_status :no_content
+    end
+  end
+
+  context "when the course have active enrrollments" do
+    before { create :enrollment, course: course }
+
+    it "fails to destroy course, and returns errors" do
+      expect { delete url, headers: admin_headers }.not_to change { Course.count }
+
+      expect(response).to have_http_status :unprocessable_entity
     end
   end
 end

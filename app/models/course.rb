@@ -1,9 +1,11 @@
 class Course < ApplicationRecord
   has_paper_trail
 
-  has_many :enrollments
+  has_many :enrollments, dependent: :restrict_with_error
+
   has_many :attendees, through: :enrollments, source: :user
-  has_many :contents
+
+  has_many :contents, dependent: :destroy
 
   has_one_attached :thumbnail
 

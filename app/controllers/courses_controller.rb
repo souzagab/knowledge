@@ -37,7 +37,11 @@ class CoursesController < ApplicationController
 
   # DELETE /courses/:id
   def destroy
-    @course.destroy
+    if @course.destroy
+      head :no_content
+    else
+      render json: @course.errors, status: :unprocessable_entity
+    end
   end
 
   private
