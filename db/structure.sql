@@ -135,6 +135,39 @@ CREATE TABLE public.ar_internal_metadata (
 
 
 --
+-- Name: contents; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.contents (
+    id bigint NOT NULL,
+    course_id bigint NOT NULL,
+    name character varying NOT NULL,
+    description text DEFAULT ''::text,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: contents_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.contents_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: contents_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.contents_id_seq OWNED BY public.contents.id;
+
+
+--
 -- Name: courses; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -333,6 +366,13 @@ ALTER TABLE ONLY public.active_storage_variant_records ALTER COLUMN id SET DEFAU
 
 
 --
+-- Name: contents id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.contents ALTER COLUMN id SET DEFAULT nextval('public.contents_id_seq'::regclass);
+
+
+--
 -- Name: courses id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -397,6 +437,14 @@ ALTER TABLE ONLY public.active_storage_variant_records
 
 ALTER TABLE ONLY public.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: contents contents_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.contents
+    ADD CONSTRAINT contents_pkey PRIMARY KEY (id);
 
 
 --
@@ -473,6 +521,20 @@ CREATE UNIQUE INDEX index_active_storage_blobs_on_key ON public.active_storage_b
 --
 
 CREATE UNIQUE INDEX index_active_storage_variant_records_uniqueness ON public.active_storage_variant_records USING btree (blob_id, variation_digest);
+
+
+--
+-- Name: index_contents_on_course_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_contents_on_course_id ON public.contents USING btree (course_id);
+
+
+--
+-- Name: index_contents_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_contents_on_name ON public.contents USING btree (name);
 
 
 --
@@ -555,6 +617,14 @@ ALTER TABLE ONLY public.active_storage_variant_records
 
 
 --
+-- Name: contents fk_rails_b88ee596dc; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.contents
+    ADD CONSTRAINT fk_rails_b88ee596dc FOREIGN KEY (course_id) REFERENCES public.courses(id);
+
+
+--
 -- Name: active_storage_attachments fk_rails_c3b3935057; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -582,6 +652,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220123183917'),
 ('20220125072306'),
 ('20220125082226'),
-('20220125104434');
+('20220125104434'),
+('20220128033805');
 
 
