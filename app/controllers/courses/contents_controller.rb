@@ -5,6 +5,12 @@ module Courses
     load_and_authorize_resource
     before_action :find_course
 
+    def index
+      contents = Content.accessible_by(current_ability).includes([:file_attachment])
+
+      render json: contents
+    end
+
     def create
       content = @course.contents.build content_params
 
@@ -13,6 +19,12 @@ module Courses
       else
         render json: content.errors, status: :unprocessable_entity
       end
+    end
+
+    def show
+      content = @course.contents.find params[:id]
+
+      render json: content
     end
 
     private

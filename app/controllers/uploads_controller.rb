@@ -15,10 +15,16 @@ class UploadsController < ApplicationController
     render json: { signed_url: }, status: :created
   end
 
+  def show
+    blob = ActiveStorage::Blob.find params[:blob_id]
+
+    expires_in ActiveStorage.service_urls_expire_in
+    redirect_to blob.url(disposition: content_disposition)
+  end
+
   private
 
   def file_params
     params.require(:file).permit(:filename, :byte_size, :checksum, :content_type, metadata: {})
   end
-
 end

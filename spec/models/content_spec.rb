@@ -41,6 +41,10 @@ RSpec.describe Content, type: :model do
     it { is_expected.to have_one_attached :file }
   end
 
+  context "attributes" do
+    it { is_expected.to delegate_method(:blob_id).to(:file) }
+  end
+
   context "validations" do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:file) }

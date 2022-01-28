@@ -6,6 +6,8 @@ class Content < ApplicationRecord
 
   has_one_attached :file
 
+  delegate :blob_id, to: :file
+
   validates :name, presence: true
   validates :file, presence: true
 end

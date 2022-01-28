@@ -13,7 +13,7 @@ RSpec.describe "courses#show", type: :request do
     end
 
     context "authorization" do
-      it "requires course to be an admin" do
+      it "requires user to be an admin" do
         get url, headers: auth_headers
 
         expect(response).to have_http_status :forbidden
