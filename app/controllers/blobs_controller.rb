@@ -1,7 +1,8 @@
 # Controller for direct uploads on amazon via active-storage
-class UploadsController < ApplicationController
+class BlobsController < ApplicationController
   prepend_before_action :authenticate_user!
 
+  # POST /blobs
   def create
     # key: nil, filename:, byte_size:, checksum:, content_type: nil, metadata: nil, service_name: nil, record: nil
     blob = ActiveStorage::Blob.create_before_direct_upload! filename: file_params["filename"],
@@ -15,8 +16,9 @@ class UploadsController < ApplicationController
     render json: { signed_url: }, status: :created
   end
 
+  # GET /blobs/:id
   def show
-    blob = ActiveStorage::Blob.find params[:blob_id]
+    blob = ActiveStorage::Blob.find params[:id]
 
     expires_in ActiveStorage.service_urls_expire_in
     redirect_to blob.url(disposition: content_disposition)
@@ -24,7 +26,11 @@ class UploadsController < ApplicationController
 
   private
 
-  def file_params
+  def blob_params
     params.require(:file).permit(:filename, :byte_size, :checksum, :content_type, metadata: {})
+  end
+
+  def content_disposition
+    params.permit(:disposition)
   end
 end

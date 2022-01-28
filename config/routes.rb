@@ -25,5 +25,5 @@ Rails.application.routes.draw do
     resources :contents, module: :courses, only: %i[index create show]
   end
 
-  resources :uploads, only: :create
+  resources :blobs, only: %i[create show]
 end
