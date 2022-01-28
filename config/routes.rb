@@ -23,4 +23,6 @@ Rails.application.routes.draw do
   resources :courses do
     resources :enrollments, module: :courses, only: %i[index create destroy]
   end
+
+  resources :uploads, only: :create
 end

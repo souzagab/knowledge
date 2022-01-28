@@ -35,10 +35,6 @@ module Knowledge
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
 
-    # https://github.com/heartcombo/devise/issues/4696
-    Rails.application.config.middleware.insert_before Warden::Manager, ActionDispatch::Cookies
-    Rails.application.config.middleware.insert_before Warden::Manager, ActionDispatch::Session::CookieStore
-
     config.api_only = true
     config.active_record.schema_format = :sql
   end
