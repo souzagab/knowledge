@@ -2,7 +2,7 @@ RSpec.describe "Uploads", type: :request do
   describe "#create - POST /uploads" do
     let(:url) { "/uploads" }
 
-    let(:file) { file_fixture "image.png" }
+    let(:file) { file_fixture "images/image.png" }
 
     # TODO: Helper for creating upload params for testing (eg: `upload_params_for(file)`)
     let(:params) do

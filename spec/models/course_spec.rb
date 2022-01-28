@@ -34,6 +34,8 @@ RSpec.describe Course, type: :model do
   context "relations" do
     it { is_expected.to have_many(:enrollments) }
     it { is_expected.to have_many(:attendees).through(:enrollments).source(:user) }
+
+    it { is_expected.to have_one_attached :thumbnail }
   end
 
   context "validations" do
