@@ -1,4 +1,5 @@
-RSpec.describe "courses/contents#index", type: :request do
+# TODO: Contents render all attachments, find a way to optmize the query
+RSpec.describe "courses/contents#index", :without_bullet, type: :request do
   let!(:course) { create :course }
 
   def url(course_id: course.id)

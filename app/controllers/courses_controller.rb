@@ -5,9 +5,9 @@ class CoursesController < ApplicationController
 
   # GET /courses
   def index
-    courses = Course.accessible_by(current_ability)
+    courses = Course.accessible_by(current_ability).includes([:thumbnail_attachment])
 
-    render json: courses
+    render json: courses, each_serializer: Collections::CourseSerializer
   end
 
   # GET /courses/:id

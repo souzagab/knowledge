@@ -40,6 +40,10 @@ RSpec.describe Course, type: :model do
     it { is_expected.to have_one_attached :thumbnail }
   end
 
+  context "attributes" do
+    it { is_expected.to delegate_method(:blob_id).to(:thumbnail).with_prefix }
+  end
+
   context "validations" do
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:description) }

@@ -7,6 +7,8 @@ class Course < ApplicationRecord
 
   has_one_attached :thumbnail
 
+  delegate :blob_id, to: :thumbnail, prefix: true
+
   validates :title, presence: true
   validates :description, presence: true
 end

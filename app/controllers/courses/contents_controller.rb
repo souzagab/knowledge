@@ -6,7 +6,7 @@ module Courses
     before_action :find_course
 
     def index
-      contents = Content.accessible_by(current_ability).includes([:file_attachment])
+      contents = Content.accessible_by(current_ability)
 
       render json: contents
     end
