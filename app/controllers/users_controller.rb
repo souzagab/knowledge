@@ -37,7 +37,11 @@ class UsersController < ApplicationController
 
   # DELETE /users/:id
   def destroy
-    @user.destroy
+    if @user.destroy
+      head :no_content
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
   end
 
   private
