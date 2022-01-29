@@ -5,9 +5,9 @@ class CoursesController < ApplicationController
 
   # GET /courses
   def index
-    courses = Course.accessible_by(current_ability)
+    courses = Course.accessible_by(current_ability).includes([:thumbnail_attachment])
 
-    render json: courses
+    render json: courses, each_serializer: Collections::CourseSerializer
   end
 
   # GET /courses/:id
@@ -37,12 +37,16 @@ class CoursesController < ApplicationController
 
   # DELETE /courses/:id
   def destroy
-    @course.destroy
+    if @course.destroy
+      head :no_content
+    else
+      render json: @course.errors, status: :unprocessable_entity
+    end
   end
 
   private
 
   def course_params
-    params.require(:course).permit %i[title description]
+    params.require(:course).permit %i[title description thumbnail]
   end
 end

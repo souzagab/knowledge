@@ -25,7 +25,7 @@ RSpec.describe "courses/enrollments#create", type: :request do
     end
 
     it "requires parent resource (course) to exist" do
-      get url(course_id: 0), headers: admin_headers
+      post url(course_id: 0), params: params, headers: admin_headers
 
       expect(response).to have_http_status :not_found
     end

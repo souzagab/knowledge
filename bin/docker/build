@@ -1,7 +1,7 @@
 #!/bin/bash
 
-docker compose down
+docker-compose down
 
-docker compose build api
-docker compose run --rm api bin/setup
+docker-compose build api
+docker-compose run --rm api bin/setup
 docker-compose down

@@ -272,7 +272,7 @@ Devise.setup do |config|
   config.jwt do |jwt|
     jwt.secret = ENV.fetch("DEVISE_JWT_SECRET_KEY")
 
-    jwt.expiration_time = ENV.fetch("DEVISE_JWT_EXPIRATION_TIME", 10).minutes.to_i
+    jwt.expiration_time = ENV.fetch("DEVISE_JWT_EXPIRATION_TIME", 10).to_i.minutes.to_i
   end
 
   # ==> OmniAuth

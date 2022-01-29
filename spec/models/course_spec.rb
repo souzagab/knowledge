@@ -32,8 +32,16 @@ RSpec.describe Course, type: :model do
   end
 
   context "relations" do
-    it { is_expected.to have_many(:enrollments) }
+    it { is_expected.to have_many(:enrollments).dependent(:restrict_with_error) }
     it { is_expected.to have_many(:attendees).through(:enrollments).source(:user) }
+
+    it { is_expected.to have_many(:contents).dependent(:destroy) }
+
+    it { is_expected.to have_one_attached :thumbnail }
+  end
+
+  context "attributes" do
+    it { is_expected.to delegate_method(:blob_id).to(:thumbnail).with_prefix }
   end
 
   context "validations" do
