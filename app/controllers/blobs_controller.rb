@@ -4,6 +4,7 @@ class BlobsController < ApplicationController
 
   # POST /blobs
   def create
+    # TODO: Isolate logic from controller, checking for failures
     # key: nil, filename:, byte_size:, checksum:, content_type: nil, metadata: nil, service_name: nil, record: nil
     blob = ActiveStorage::Blob.create_before_direct_upload! filename: blob_params["filename"],
                                                             byte_size: blob_params["byte_size"],
@@ -21,6 +22,7 @@ class BlobsController < ApplicationController
     blob = ActiveStorage::Blob.find params[:id]
 
     expires_in ActiveStorage.service_urls_expire_in
+
     blob_url = Rails.application.routes.url_helpers.rails_blob_path(blob, only_path: true)
 
     redirect_to blob_url
@@ -32,7 +34,4 @@ class BlobsController < ApplicationController
     params.require(:file).permit(:filename, :byte_size, :checksum, :content_type, metadata: {})
   end
 
-  def content_disposition
-    params.permit(:disposition)
-  end
 end
