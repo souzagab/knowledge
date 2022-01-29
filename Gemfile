@@ -29,6 +29,8 @@ gem "bootsnap", require: false
 
 gem "dotenv-rails", "~> 2.7", require: "dotenv/rails-now"
 
+gem "active_model_serializers", "~> 0.10.13"
+
 gem "devise", "~> 4.8"
 
 gem "devise-jwt", "~> 0.9.0"
@@ -42,6 +44,8 @@ gem "cancancan", "~> 3.3"
 gem "rack-cors"
 
 gem "paper_trail", "~> 12.2"
+
+gem "aws-sdk-s3", "~> 1.111", require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

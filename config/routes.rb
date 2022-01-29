@@ -22,5 +22,8 @@ Rails.application.routes.draw do
 
   resources :courses do
     resources :enrollments, module: :courses, only: %i[index create destroy]
+    resources :contents, module: :courses, only: %i[index create show destroy]
   end
+
+  resources :blobs, only: %i[create show]
 end

@@ -27,7 +27,11 @@ module Courses
     def destroy
       enrollment = @course.enrollments.find params[:id]
 
-      enrollment.destroy
+      if enrollment.destroy
+        head :no_content
+      else
+        render json: enrollment.errors, status: :unprocessable_entity
+      end
     end
 
     private

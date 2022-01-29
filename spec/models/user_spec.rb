@@ -40,6 +40,10 @@ RSpec.describe User, type: :model do
   end
 
   context "validations" do
+    it { is_expected.to have_many(:enrollments).dependent(:destroy) }
+  end
+
+  context "validations" do
     context "uniqueness" do
       subject { create :user }
 

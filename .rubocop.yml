@@ -111,7 +111,11 @@ Metrics/BlockLength:
   Exclude:
     - "**/*.rake"
     - "spec/**/*.rb"
-    - "spec/**/**/*.rb"
+
+Metrics/AbcSize:
+  Exclude:
+    - "**/*.rake"
+    - "db/**/*.rb"
 
 Metrics/CyclomaticComplexity:
   Max: 8
