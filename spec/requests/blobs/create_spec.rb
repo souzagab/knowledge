@@ -6,7 +6,7 @@ RSpec.describe "blobs#create", type: :request do
   # TODO: Helper for creating upload params for testing (eg: `upload_params_for(file)`)
   let(:params) do
     {
-      file: {
+      blob: {
         filename:     file.basename,
         content_type: Marcel::MimeType.for(file),
         byte_size:    File.size(file),

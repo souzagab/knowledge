@@ -31,7 +31,7 @@ class BlobsController < ApplicationController
   private
 
   def blob_params
-    params.require(:file).permit(:filename, :byte_size, :checksum, :content_type, metadata: {})
+    params.require(:blob).permit(:filename, :byte_size, :checksum, :content_type, metadata: {})
   end
 
 end
