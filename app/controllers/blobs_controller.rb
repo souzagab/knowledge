@@ -4,6 +4,10 @@ class BlobsController < ApplicationController
 
   # POST /blobs
   def create
+    # TODO: Blobs are only attached to courses, if we expand this structure
+    #        we need to authorize the specific resources
+    authorize! Course, :manage
+
     # TODO: Isolate logic from controller, checking for failures
     # key: nil, filename:, byte_size:, checksum:, content_type: nil, metadata: nil, service_name: nil, record: nil
     blob = ActiveStorage::Blob.create_before_direct_upload! filename: blob_params["filename"],
@@ -12,9 +16,7 @@ class BlobsController < ApplicationController
                                                             content_type: blob_params["content_type"],
                                                             metadata: blob_params["metadata"]
 
-    signed_url = blob.service_url_for_direct_upload # expiration_time
-
-    render json: { signed_url: }, status: :created
+    render json: blob, status: :created
   end
 
   # GET /blobs/:id
