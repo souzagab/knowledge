@@ -1,7 +1,8 @@
 # Registrations controller (devise patch)
 class RegistrationsController < Devise::RegistrationsController
-  respond_to :json
+  include RackSessionsFix
 
+  respond_to :json
   before_action :configure_sign_up_params, only: :create
 
   private
