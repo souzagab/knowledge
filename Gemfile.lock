@@ -76,6 +76,7 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    api-pagination (5.0.0)
     aws-eventstream (1.2.0)
     aws-partitions (1.550.0)
     aws-sdk-core (3.125.5)
@@ -155,6 +156,18 @@ GEM
     jmespath (1.5.0)
     jsonapi-renderer (0.2.2)
     jwt (2.3.0)
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     loofah (2.13.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -276,6 +289,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10.13)
   active_storage_validations (~> 0.9.6)
+  api-pagination (~> 5.0)
   aws-sdk-s3 (~> 1.111)
   bootsnap
   bullet (~> 7.0)
@@ -287,6 +301,7 @@ DEPENDENCIES
   factory_bot_rails (~> 6.2)
   faker (~> 2.19)
   image_processing (~> 1.2)
+  kaminari (~> 1.2)
   paper_trail (~> 12.2)
   pg (~> 1.1)
   puma (~> 5.0)
