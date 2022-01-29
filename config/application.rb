@@ -37,5 +37,7 @@ module Knowledge
 
     config.api_only = true
     config.active_record.schema_format = :sql
+    # Disable active_storage routes
+    config.active_storage.draw_routes = false
   end
 end
