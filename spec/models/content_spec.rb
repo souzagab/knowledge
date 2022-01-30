@@ -1,18 +1,10 @@
 RSpec.describe Content, type: :model do
 
   context "factories" do
-    # TODO: Helper for generating blobs
-    let!(:blob) do
-      path = file_fixture "videos/sample.mp4"
-      io = File.open path, "rb"
-      content_type = Marcel::MimeType.for path
-
-      ActiveStorage::Blob.create_and_upload!(io:, content_type:, filename: path.basename)
-    end
     # TODO: Create a shared_example for testing factories
     describe "build" do
       it "builds a valid resource" do
-        content = build :content, file: blob.signed_id
+        content = build :content
 
         expect(content).to be_valid
       end
@@ -20,7 +12,7 @@ RSpec.describe Content, type: :model do
 
     describe "create" do
       it "creates a valid content" do
-        expect { create :content, file: blob.signed_id }.to change { Content.count }
+        expect { create :content }.to change { Content.count }
       end
     end
 

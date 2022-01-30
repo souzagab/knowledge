@@ -8,13 +8,7 @@ class BlobsController < ApplicationController
     #        we need to authorize the specific resources
     authorize! Course, :manage
 
-    # TODO: Isolate logic from controller, checking for failures
-    # key: nil, filename:, byte_size:, checksum:, content_type: nil, metadata: nil, service_name: nil, record: nil
-    blob = ActiveStorage::Blob.create_before_direct_upload! filename: blob_params["filename"],
-                                                            byte_size: blob_params["byte_size"],
-                                                            checksum: blob_params["checksum"],
-                                                            content_type: blob_params["content_type"],
-                                                            metadata: blob_params["metadata"]
+    blob = ActiveStorage::Blob.create_before_direct_upload! **blob_params.to_h.symbolize_keys
 
     render json: blob, status: :created
   end
