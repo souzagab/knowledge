@@ -22,16 +22,9 @@ RSpec.describe "courses#create", type: :request do
   end
 
   context "when all params sent are valid" do
-    # TODO: Helper for generating blobs
-    let!(:thumbnail_blob) do
-      path = file_fixture "images/image.jpg"
-      io = File.open path, "rb"
-      content_type = Marcel::MimeType.for path
+    let!(:thumbnail) { blob_for "images/image.jpg" }
 
-      ActiveStorage::Blob.create_and_upload!(io:, content_type:, filename: path.basename)
-    end
-
-    let!(:course_attributes) { attributes_for :course, thumbnail: thumbnail_blob.signed_id }
+    let!(:course_attributes) { attributes_for :course, thumbnail: thumbnail.signed_id }
 
     it "creates a new course, with thumbnail attached" do
       expect do

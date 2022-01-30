@@ -13,4 +13,5 @@ class Course < ApplicationRecord
 
   validates :title, presence: true
   validates :description, presence: true
+  validates :thumbnail, content_type: ["image/png", "image/jpg", "image/jpeg"]
 end

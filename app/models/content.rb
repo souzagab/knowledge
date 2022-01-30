@@ -10,4 +10,6 @@ class Content < ApplicationRecord
 
   validates :name, presence: true
   validates :file, presence: true
+
+  validates :file, attached: true
 end

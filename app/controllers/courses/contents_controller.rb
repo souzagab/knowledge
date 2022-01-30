@@ -11,7 +11,7 @@ module Courses
     def index
       contents = Content.accessible_by(current_ability)
 
-      render json: contents
+      paginate json: contents
     end
 
     # POST /courses/:course_id/contents

@@ -1,15 +1,6 @@
 RSpec.describe "blobs#show", type: :request do
-
-  let(:file) { file_fixture ["images/image.png", "images/image.jpg", "videos/sample.mp4"].sample }
-
-  # TODO: Helper for generating blobs
-  let!(:blob) do
-    path = file
-    io = File.open path, "rb"
-    content_type = Marcel::MimeType.for path
-
-    ActiveStorage::Blob.create_and_upload!(io:, content_type:, filename: path.basename)
-  end
+  let!(:file)  { ["images/image.png", "images/image.jpg", "videos/sample.mp4"].sample }
+  let!(:blob)  { blob_for file }
 
   def url(id: blob.id)
     "/blobs/#{id}"

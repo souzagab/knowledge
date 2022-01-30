@@ -11,7 +11,7 @@ ARG GROUP=user
 ARG APP_PATH=/knowledge
 
 RUN apk add --update --no-cache tzdata bash less && \
-  apk add --no-cache --virtual .base build-base && \
+  apk add --no-cache --virtual .base build-base libxml2-dev libxslt-dev && \
   apk add --no-cache postgresql14-client postgresql14-dev
 
 RUN addgroup -g $GROUP_ID -S $GROUP && \

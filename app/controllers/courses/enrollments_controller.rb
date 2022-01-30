@@ -9,7 +9,7 @@ module Courses
     def index
       enrollments = @course.enrollments
 
-      render json: enrollments
+      paginate json: enrollments
     end
 
     # POST /courses/:course_id/enrollments
