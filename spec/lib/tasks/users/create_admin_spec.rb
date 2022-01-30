@@ -12,4 +12,17 @@ RSpec.describe "users:create_admin" do
     user = User.last
     expect(user).to be_admin
   end
+
+  context "when an error occurs when saving the user" do
+    before do
+      # Mocking IO failure
+      allow_any_instance_of(User).to receive(:save).and_return(false)
+    end
+
+    it "does not create the user" do
+      expect do
+        Rake.application["users:create_admin"].invoke
+      end.not_to change { User.count }
+    end
+  end
 end

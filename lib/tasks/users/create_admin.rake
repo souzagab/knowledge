@@ -3,21 +3,31 @@
 # bin/rails users:create_admin
 #
 namespace :users do
-  task :create_admin do
+  task create_admin: :environment do
     # TODO: Expand task to allow the use of dynamic args (with optparse)
-    password = SecureRandom.hex(8)
+    password = SecureRandom.hex(16)
 
-    User.create! name: "Administrator", email: "admin@knowledge.com", password: password, role: :admin
+    user = User.create! name: "Administrator",
+                        email: "#{SecureRandom.hex(4)}@knowledge.com",
+                        password: password,
+                        role: :admin
 
-    puts """
-    ===================================================
+    if user.persisted?
+      puts """
+      ===================================================
 
-      User created!
+        User created!
 
-      email:    admin@knowledge.com
-      password: #{password}
+        email:    #{user.email}
+        password: #{password}
 
-    ===================================================
-    """
+      ===================================================
+      """
+    end
+
+  rescue => error # rubocop:disable Style/RescueStandardError
+    puts "Admin not created!"
+
+    puts error
   end
 end
