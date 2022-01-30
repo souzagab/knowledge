@@ -1,5 +1,6 @@
 # Controller for direct uploads on amazon via active-storage
 class BlobsController < ApplicationController
+
   prepend_before_action :authenticate_user!
 
   # POST /blobs
@@ -19,9 +20,7 @@ class BlobsController < ApplicationController
 
     expires_in ActiveStorage.service_urls_expire_in
 
-    blob_url = Rails.application.routes.url_helpers.rails_blob_path(blob, only_path: true)
-
-    redirect_to blob_url
+    redirect_to blob.url, allow_other_host: true
   end
 
   private
