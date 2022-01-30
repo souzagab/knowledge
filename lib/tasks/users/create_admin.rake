@@ -5,7 +5,7 @@
 namespace :users do
   task :create_admin do
     # TODO: Expand task to allow the use of dynamic args (with optparse)
-    password = SecureRandom.hex(4)
+    password = SecureRandom.hex(8)
 
     User.create! name: "Administrator", email: "admin@knowledge.com", password: password, role: :admin
 

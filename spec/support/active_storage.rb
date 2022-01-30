@@ -10,7 +10,7 @@ module UploadHelpers
       content_type = Marcel::MimeType.for fixture
       filename = fixture.basename
 
-      ActiveStorage::Blob.create_and_upload!(io:, filename:, content_type:)
+      ActiveStorage::Blob.create_and_upload! io:, filename:, content_type:
     end
   end
 end
