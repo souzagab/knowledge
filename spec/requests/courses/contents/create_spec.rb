@@ -31,15 +31,7 @@ RSpec.describe "courses/contents#create", type: :request do
   end
 
   context "when all the required params are sent" do
-    # TODO: Helper for generating blobs
-    let!(:blob) do
-      path = file_fixture "videos/sample.mp4"
-      io = File.open path, "rb"
-      content_type = Marcel::MimeType.for path
-
-      ActiveStorage::Blob.create_and_upload!(io:, content_type:, filename: path.basename)
-    end
-
+    let!(:blob) { blob_for "videos/sample.mp4" }
     let!(:params) { { content: attributes_for(:content, file: blob.signed_id) }.to_json }
 
     it "creates a new content for the course" do

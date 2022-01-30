@@ -26,4 +26,6 @@ Rails.application.routes.draw do
   end
 
   resources :blobs, only: %i[create show]
+
+  match "*path", to: "application#route_not_found!", via: :all
 end

@@ -22,7 +22,7 @@ RSpec.describe "blobs#create", type: :request do
       expect(response).to be_unauthorized
     end
 
-    xcontext "authorization" do
+    context "authorization" do
       it "only admins can create blobs" do
         post url, params: params, headers: auth_headers
 
@@ -34,7 +34,7 @@ RSpec.describe "blobs#create", type: :request do
   context "when all required params are sent" do
     it "creates a new blob, and returns url for direct upload" do
       expect do
-        post url, params: params, headers: auth_headers
+        post url, params: params, headers: admin_headers
       end.to change { ActiveStorage::Blob.count }.by(1)
 
       expect(response).to have_http_status :created

@@ -1,20 +1,17 @@
 # Controller for direct uploads on amazon via active-storage
 class BlobsController < ApplicationController
+
   prepend_before_action :authenticate_user!
 
   # POST /blobs
   def create
-    # TODO: Isolate logic from controller, checking for failures
-    # key: nil, filename:, byte_size:, checksum:, content_type: nil, metadata: nil, service_name: nil, record: nil
-    blob = ActiveStorage::Blob.create_before_direct_upload! filename: blob_params["filename"],
-                                                            byte_size: blob_params["byte_size"],
-                                                            checksum: blob_params["checksum"],
-                                                            content_type: blob_params["content_type"],
-                                                            metadata: blob_params["metadata"]
+    # TODO: Blobs are only attached to courses, if we expand this structure
+    #        we need to authorize the specific resources
+    authorize! Course, :manage
 
-    signed_url = blob.service_url_for_direct_upload # expiration_time
+    blob = ActiveStorage::Blob.create_before_direct_upload! **blob_params.to_h.symbolize_keys
 
-    render json: { signed_url: }, status: :created
+    render json: blob, status: :created
   end
 
   # GET /blobs/:id
@@ -23,9 +20,7 @@ class BlobsController < ApplicationController
 
     expires_in ActiveStorage.service_urls_expire_in
 
-    blob_url = Rails.application.routes.url_helpers.rails_blob_path(blob, only_path: true)
-
-    redirect_to blob_url
+    redirect_to blob.url, allow_other_host: true
   end
 
   private

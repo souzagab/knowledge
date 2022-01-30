@@ -1,4 +1,4 @@
-RSpec.describe "courses#index", type: :request do
+RSpec.describe "courses#index", :without_bullet, type: :request do
   let(:url) { "/courses" }
 
   context "requirements" do

@@ -1,5 +1,6 @@
 # Sessions controller (devise patch)
 class SessionsController < Devise::SessionsController
-  respond_to :json
+  include RackSessionsFix
 
+  respond_to :json
 end

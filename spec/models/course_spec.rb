@@ -47,5 +47,7 @@ RSpec.describe Course, type: :model do
   context "validations" do
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:description) }
+
+    it { is_expected.to validate_content_type_of(:thumbnail).allowing("image/png", "image/jpg", "image/jpeg") }
   end
 end

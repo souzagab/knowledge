@@ -1,16 +1,7 @@
 RSpec.describe "courses/contents#destroy", type: :request do
   let!(:course) { create :course }
 
-  # TODO: Helper for generating blobs
-  let!(:blob) do
-    path = file_fixture "videos/sample.mp4"
-    io = File.open path, "rb"
-    content_type = Marcel::MimeType.for path
-
-    ActiveStorage::Blob.create_and_upload!(io:, content_type:, filename: path.basename)
-  end
-
-  let!(:content) { create :content, course: course, file: blob.signed_id }
+  let!(:content) { create :content, course: course }
 
   def url(course_id: course.id, id: content.id)
     "/courses/#{course_id}/contents/#{id}"
